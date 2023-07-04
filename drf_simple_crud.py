@@ -8,7 +8,7 @@
 6.- Verificamos que ya estamos trabajando modulo virtual venv, abrimos una consola y verificamos... Ctrl+Shit+ñ 
 7.- En caso de que no se muestre en el terminal el modo virtual, activamos el modulo con: ".\venv\Scripts\activate"
 8.- Instalamos Django: "pip install django" y verificamos la versión: "django-admin --version"
-9.- Limpiams consola (venv) y instalamos: "pip install djangorestframework"
+9.- Limpiamos consola (venv) y instalamos: "pip install djangorestframework"
 10.- Creamos el proyecto: "django-admin startproject drfsamplecrud"
 11.- Ahora hay que enlacar nuestro proyecto con una aplicación.
 12.- Vamos a crear una app que a través de API que nos permita obtener proyecto, crear proyecto, actualizar proyecto y eliminarlos. Esto se conoce como un "CRUD"
@@ -261,35 +261,226 @@ __pycache__
 46.- luego el comando:
 
 
-47.- Aplicamos el comando en console: "git add ."
-48.- Aplicamos el comando en console: 'git commit -m "Comentario"'
-49.-
-50.-
-51.-
-52.-
-53.-
-54.-
-55.-
-56.-
-57.-
-58.-
-59.-
-60.-
-61.-
-62.-
-63.-
-64.-
-65.-
-66.-
-67.-
-68.-
-69.-
-70.-
-71.-
-72.-
-73.-
-74.-
-75.-
+(venv) C:\Proyectos\Django\drf_simple_crud>git init              
+Reinitialized existing Git repository in C:/Proyectos/Django/drf_simple_crud/.git/
+
+(venv) C:\Proyectos\Django\drf_simple_crud>git add .
+
+(venv) C:\Proyectos\Django\drf_simple_crud>git commit -m "First Commit"
+[master (root-commit) 1317241] First Commit
+ 32 files changed, 670 insertions(+)
+ create mode 100644 .gitignore
+ create mode 100644 dfrsimplecrud/__init__.py
+ create mode 100644 dfrsimplecrud/__pycache__/__init__.cpython-311.pyc
+ create mode 100644 dfrsimplecrud/__pycache__/settings.cpython-311.pyc
+ create mode 100644 dfrsimplecrud/__pycache__/urls.cpython-311.pyc
+ create mode 100644 dfrsimplecrud/__pycache__/wsgi.cpython-311.pyc
+ create mode 100644 dfrsimplecrud/asgi.py
+ create mode 100644 dfrsimplecrud/settings.py
+ create mode 100644 dfrsimplecrud/urls.py
+ create mode 100644 dfrsimplecrud/wsgi.py
+ create mode 100644 drf_simple_crud.py
+ create mode 100644 manage.py
+ create mode 100644 projects/__init__.py
+ create mode 100644 projects/__pycache__/__init__.cpython-311.pyc
+ create mode 100644 projects/__pycache__/admin.cpython-311.pyc
+ create mode 100644 projects/__pycache__/api.cpython-311.pyc
+ create mode 100644 projects/__pycache__/apps.cpython-311.pyc
+ create mode 100644 projects/__pycache__/models.cpython-311.pyc
+ create mode 100644 projects/__pycache__/serializers.cpython-311.pyc
+ create mode 100644 projects/__pycache__/urls.cpython-311.pyc
+ create mode 100644 projects/admin.py
+ create mode 100644 projects/api.py
+ create mode 100644 projects/apps.py
+ create mode 100644 projects/migrations/0001_initial.py
+ create mode 100644 projects/migrations/__init__.py
+ create mode 100644 projects/migrations/__pycache__/0001_initial.cpython-311.pyc  
+ create mode 100644 projects/migrations/__pycache__/__init__.cpython-311.pyc      
+ create mode 100644 projects/models.py
+ create mode 100644 projects/serializers.py
+ create mode 100644 projects/tests.py
+ create mode 100644 projects/urls.py
+ create mode 100644 projects/views.py
+
+(venv) C:\Proyectos\Django\drf_simple_crud>
+
+215.- Ahora vamos a crear un repositorio "GitHub" (muy importante).
+216.- Entramos en la liga "github.com" nos logueamos con nuestra cuenta
+217.- En la parte superior derecha, clic en [+] y [New reposotory]
+218.- Colocamos el nombre del reposotorio: "django-auth-crud"
+219.- Le indicamos que es Publico
+220.- Clic al botón [Crear Repositorio]
+221.- Copiamos la línea de comando:
+
+51.- Ahora desde la guía de Render vamos a aplicar los comandos que indican, veamos...
+50.- Desde el archivo "Settings.py" aplicamos lo siguiente:
+
+# Don't forget to import os at the beginning of the file
+import os
+
+52.- "SECRET_KEY "
+
+# SECURITY WARNING: keep the secret key used in production secret!
+SECRET_KEY = os.environ.get('SECRET_KEY', default='your secret key')
+
+53.- "DEBUG"
+
+# SECURITY WARNING: don't run with debug turned on in production!
+DEBUG = 'RENDER' not in os.environ
+
+54.- "ALLOWED_HOST"
+
+# https://docs.djangoproject.com/en/3.0/ref/settings/#allowed-hosts
+ALLOWED_HOSTS = []
+
+RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
+if RENDER_EXTERNAL_HOSTNAME:
+    ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
+	
+55.- Ahora procedemos a configurar la BD "PostgreSQL"...
+
+postgres://drfcrud_lt0n_user:vY3DqpGJq98GZBEZuQuhGfxpEBkjKZZO@dpg-cii6ucmnqql0tc2ddueg-a/drfcrud_lt0n
+
+56.- En console instalamos "dj-database-url psycopg2-binary"
+
+(venv) C:\Proyectos\Django\drf_simple_crud>pip install dj-database-url psycopg2-binary
+Collecting dj-database-url
+  Using cached dj_database_url-2.0.0-py3-none-any.whl (7.6 kB)
+Collecting psycopg2-binary
+  Using cached psycopg2_binary-2.9.6-cp311-cp311-win_amd64.whl (1.2 MB)
+Requirement already satisfied: Django>=3.2 in c:\proyectos\django\drf_simple_crud\venv\lib\site-packages (from dj-database-url) (4.2.3)
+Collecting typing-extensions>=3.10.0.0 (from dj-database-url)
+  Using cached typing_extensions-4.7.1-py3-none-any.whl (33 kB)
+Requirement already satisfied: asgiref<4,>=3.6.0 in c:\proyectos\django\drf_simple_crud\venv\lib\site-packages (from Django>=3.2->dj-database-url) (3.7.2)
+Requirement already satisfied: sqlparse>=0.3.1 in c:\proyectos\django\drf_simple_crud\venv\lib\site-packages (from Django>=3.2->dj-database-url) (0.4.4)
+Requirement already satisfied: tzdata in c:\proyectos\django\drf_simple_crud\venv\lib\site-packages (from Django>=3.2->dj-database-url) (2023.3)
+Installing collected packages: typing-extensions, psycopg2-binary, dj-database-url
+Successfully installed dj-database-url-2.0.0 psycopg2-binary-2.9.6 typing-extensions-4.7.1
+
+(venv) C:\Proyectos\Django\drf_simple_crud>
+
+57.- Ahora hacemo sel import de: "import dj_database_url" en "Settings.py"
+58.- Ahora, "dj_database_url" debemos asignarlo a la varable "DATABASES="
+
+DATABASES = {
+    "default": dj_database_url.config(
+        # Feel free to alter this value to suit your needs.
+        default="postgresql://postgres:postgres@localhost",
+        conn_max_age=600,
+    )
+}
+
+59.-  Instalamos en console: "pip install whitenoise[brotli]"
+
+(venv) C:\Proyectos\Django\drf_simple_crud>pip install whitenoise[brotli]
+Collecting whitenoise[brotli]
+  Using cached whitenoise-6.5.0-py3-none-any.whl (19 kB)
+Collecting Brotli (from whitenoise[brotli])
+  Using cached Brotli-1.0.9-cp311-cp311-win_amd64.whl (333 kB)
+Installing collected packages: Brotli, whitenoise
+Successfully installed Brotli-1.0.9 whitenoise-6.5.0
+
+(venv) C:\Proyectos\Django\drf_simple_crud>
+
+60.- En "MIDDLEWARE" incluir la línea: "'whitenoise.middleware.WhiteNoiseMiddleware',", veamos...
+
+MIDDLEWARE = [
+    "django.middleware.security.SecurityMiddleware",
+    "django.contrib.sessions.middleware.SessionMiddleware",
+    "django.middleware.common.CommonMiddleware",
+    "django.middleware.csrf.CsrfViewMiddleware",
+    "django.contrib.auth.middleware.AuthenticationMiddleware",
+    "django.contrib.messages.middleware.MessageMiddleware",
+    "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    'whitenoise.middleware.WhiteNoiseMiddleware',
+]
+
+61.- En la variable "STATIC_URL"
+
+STATIC_URL = "static/"
+
+if not DEBUG:
+    STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+    STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+	
+62.-  En la raíz de nuestro proyecto creamos un archivo llamado "build.sh" y le agregamos el siguiente contenido:
+
+#!/usr/bin/env bash
+# exit on error
+set -o errexit
+
+#poetry install
+
+python manage.py collectstatic --no-input
+python manage.py migrate
+
+63.- Generamos el archivo: "requirements.txt con el comando: "pip freezen > requiremets.txt"
+
+asgiref==3.7.2
+Brotli==1.0.9
+dj-database-url==2.0.0
+Django==4.2.3
+django-filter==23.2
+djangorestframework==3.14.0
+Markdown==3.4.3
+psycopg2-binary==2.9.6
+pytz==2023.3
+sqlparse==0.4.4
+typing_extensions==4.7.1
+tzdata==2023.3
+whitenoise==6.5.0
+
+72.- Ahora incluimos la linea de comando "pip install -r requirements.txt" en el archivo "build.sh"
+
+#!/usr/bin/env bash
+# exit on error
+set -o errexit
+
+#poetry install
+pip install -r requirements.txt
+
+python manage.py collectstatic --no-input
+python manage.py migrate
+
+73.- Ahora le damos permisos de ejutable al archivo "build.sh" con el comando: "chmod a+x build.sh" dentro de "Git Bash".
+
+Yazna@Agonzalez MINGW64 /c/Proyectos/Django/drf_simple_crud (master)
+$ chmod a+x build.sh
+(venv) 
+Yazna@Agonzalez MINGW64 /c/Proyectos/Django/drf_simple_crud (master)
+$ 
+	
+74.- Ahora intalamos un modulo nuevo llamado "gunicorn", veamos...
+
+(venv) C:\Proyectos\Django\drf_simple_crud>pip install gunicorn
+Collecting gunicorn
+  Using cached gunicorn-20.1.0-py3-none-any.whl (79 kB)
+Requirement already satisfied: setuptools>=3.0 in c:\proyectos\django\drf_simple_crud\venv\lib\site-packages (from gunicorn) (67.8.0)
+Installing collected packages: gunicorn
+Successfully installed gunicorn-20.1.0
+
+(venv) C:\Proyectos\Django\drf_simple_crud>
+
+75.- También lo vamos a necesitar en el archivo: "requirements.txt" ejecutamos el comando nuevaente para recrearlo.
+
+(venv) C:\Proyectos\Django\drf_simple_crud>pip freeze < requirements.txt 
+asgiref==3.7.2
+Brotli==1.0.9
+dj-database-url==2.0.0
+Django==4.2.3
+django-filter==23.2
+djangorestframework==3.14.0
+gunicorn==20.1.0
+Markdown==3.4.3
+psycopg2-binary==2.9.6
+pytz==2023.3
+sqlparse==0.4.4
+typing_extensions==4.7.1
+tzdata==2023.3
+whitenoise==6.5.0
+
+(venv) C:\Proyectos\Django\drf_simple_crud>
+
 76.-
 77.-
 78.-
