@@ -481,9 +481,27 @@ whitenoise==6.5.0
 
 (venv) C:\Proyectos\Django\drf_simple_crud>
 
-76.-
-77.-
-78.-
+76.- Ahora aplicamos el comando "git status" para ver las actualizaciones del git
+
+(venv) C:\Proyectos\Django\drf_simple_crud>git status
+On branch master
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   dfrsimplecrud/settings.py
+        modified:   drf_simple_crud.py
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        build.sh
+        requirements.txt
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+(venv) C:\Proyectos\Django\drf_simple_crud>
+
+77.- Incluimos los cambios al git. En console: "git add ."
+78.- Luego aplicamos el commit: 'git commit -m "ready for render.com"'
 79.-
 80.-
 81.-
